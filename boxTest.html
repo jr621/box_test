@@ -15,6 +15,9 @@
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
     var maxSize = 50;
+    var boxes = [];
+
+    var numberOfBoxes = 3;
 
     function randomNum(n) {
         return Math.floor(Math.random() * n);
@@ -28,12 +31,21 @@
 	    	color: "red"
     	}
     }
-    var box = createBox();
+
+    function createBoxes(n) {
+        for(i=0; i<n; i++) {
+            boxes.push(createBox());
+        }
+    }
 
     function drawBox() {
-    	context.fillStyle = box.color;
-    	context.fillRect(box.x,box.y,box.size,box.size);
+        for(i=0; i<boxes.length; i++) {
+           context.fillStyle = boxes[i].color;
+    	   context.fillRect(boxes[i].x,boxes[i].y,boxes[i].size,boxes[i].size);
+        }
     }
+
+    createBoxes(numberOfBoxes);
     drawBox();
     createBox();
 	</script>
