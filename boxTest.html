@@ -14,12 +14,14 @@
 
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-    var maxSize = 50;
     var boxes = [];
     var colors = ["red", "blue", "black", "maroon", "yellow", "orange", "purple"];
 
-    var numberOfBoxes = 3;
-    var maxDuration = 100;
+    var gameSettings = {
+        maxSize: 50,
+        numberOfBoxes: 3,
+        maxDuration: 100
+    }
 
     function randomNum(n) {
         return Math.floor(Math.random() * n);
@@ -27,11 +29,11 @@
 
     function createBox() {
     	return {
-    		x: randomNum(canvas.width - maxSize),
-	    	y: randomNum(canvas.height - maxSize),
-	    	size: randomNum(maxSize) + 10,
+    		x: randomNum(canvas.width - gameSettings.maxSize),
+	    	y: randomNum(canvas.height - gameSettings.maxSize),
+	    	size: randomNum(gameSettings.maxSize) + 10,
 	    	color: colors[randomNum(7)],
-            duration: randomNum(maxDuration) + 10
+            duration: randomNum(gameSettings.maxDuration) + 10
     	}
     }
 
@@ -65,7 +67,7 @@
         requestAnimationFrame(runGame);
     }
     runGame();
-    createBoxes(numberOfBoxes);
+    createBoxes(gameSettings.numberOfBoxes);
     console.log(boxes);
 	</script>
 </body>
