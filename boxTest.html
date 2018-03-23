@@ -12,13 +12,18 @@
 	<canvas id="canvas" width="600" height="400"></canvas>
 	<script type="text/javascript">
 
-		var canvas = document.getElementById("canvas");
+	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
+    var maxSize = 50;
+
+    function randomNum(n) {
+        return Math.floor(Math.random() * n);
+    }
 
     function createBox() {
     	return {
-    		x: 100,
-	    	y: 100,
+    		x: randomNum(canvas.width - maxSize),
+	    	y: randomNum(canvas.height - maxSize),
 	    	size: 50,
 	    	color: "red"
     	}
