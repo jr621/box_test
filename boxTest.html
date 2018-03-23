@@ -19,6 +19,7 @@
     var colors = ["red", "blue", "black", "maroon", "yellow", "orange", "purple"];
 
     var numberOfBoxes = 3;
+    var maxDuration = 100;
 
     function randomNum(n) {
         return Math.floor(Math.random() * n);
@@ -29,7 +30,8 @@
     		x: randomNum(canvas.width - maxSize),
 	    	y: randomNum(canvas.height - maxSize),
 	    	size: randomNum(maxSize) + 10,
-	    	color: colors[randomNum(7)]
+	    	color: colors[randomNum(7)],
+            duration: randomNum(maxDuration)
     	}
     }
 
@@ -49,6 +51,7 @@
     createBoxes(numberOfBoxes);
     drawBox();
     createBox();
+    console.log(boxes);
 	</script>
 </body>
 </html>
