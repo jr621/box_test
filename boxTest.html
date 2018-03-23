@@ -38,6 +38,9 @@
     function step() {
         for(i=0; i<boxes.length; i++) {
           boxes[i].duration --;
+            if(boxes[i].duration < 0) {
+            boxes[i] = createBox();
+            }
         }
     }
 
@@ -55,6 +58,7 @@
     }
 
     function runGame() {
+        context.clearRect(0,0,canvas.width,canvas.height);
         step();
         drawBox();
         createBox();
