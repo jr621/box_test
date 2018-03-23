@@ -31,8 +31,14 @@
 	    	y: randomNum(canvas.height - maxSize),
 	    	size: randomNum(maxSize) + 10,
 	    	color: colors[randomNum(7)],
-            duration: randomNum(maxDuration)
+            duration: randomNum(maxDuration) + 10
     	}
+    }
+
+    function step() {
+        for(i=0; i<boxes.length; i++) {
+          boxes[i].duration --;
+        }
     }
 
     function createBoxes(n) {
@@ -48,9 +54,14 @@
         }
     }
 
+    function runGame() {
+        step();
+        drawBox();
+        createBox();
+        requestAnimationFrame(runGame);
+    }
+    runGame();
     createBoxes(numberOfBoxes);
-    drawBox();
-    createBox();
     console.log(boxes);
 	</script>
 </body>
