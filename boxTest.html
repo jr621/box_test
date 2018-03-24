@@ -4,23 +4,33 @@
 	<title>Box Test</title>
 	<style type="text/css">
     canvas {
-      border: solid 1px #000;
+      background-color: black;
     }
   </style>
 </head>
 <body>
-	<canvas id="canvas" width="600" height="400"></canvas>
+	<canvas id="canvas" width="1350" height="655"></canvas>
 	<script type="text/javascript">
 
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
     var boxes = [];
-    var colors = ["red", "blue", "black", "maroon", "yellow", "orange", "purple"];
+    var colors = [
+        "red",
+        "blue",
+        "green",
+        "orange",
+        "white",
+        "purple",
+        "yellow",
+        "pink"
+        ];
 
     var gameSettings = {
-        maxSize: 50,
-        numberOfBoxes: 3,
-        maxDuration: 100
+        maxSize: 30,
+        numberOfBoxes: 100,
+        maxDuration: 300,
+        maxSpeed: 5
     }
 
     function randomNum(n) {
@@ -32,8 +42,9 @@
     		x: randomNum(canvas.width - gameSettings.maxSize),
 	    	y: randomNum(canvas.height - gameSettings.maxSize),
 	    	size: randomNum(gameSettings.maxSize) + 10,
-	    	color: colors[randomNum(7)],
-            duration: randomNum(gameSettings.maxDuration) + 10
+	    	color: colors[randomNum(8)],
+            duration: randomNum(gameSettings.maxDuration) + 10,
+            speed: randomNum(gameSettings.maxSpeed) + 1
     	}
     }
 
@@ -43,6 +54,7 @@
             if(boxes[i].duration < 0) {
             boxes[i] = createBox();
             }
+               boxes[i].x += boxes[i].speed;
         }
     }
 
@@ -52,23 +64,30 @@
         }
     }
 
-    function drawBox() {
+    function draw() {
         for(i=0; i<boxes.length; i++) {
+            context.beginPath();
+            context.arc(
+                boxes[i].x,
+                boxes[i].y,
+                boxes[i].size,
+                0,
+                2*Math.PI
+                );
            context.fillStyle = boxes[i].color;
-    	   context.fillRect(boxes[i].x,boxes[i].y,boxes[i].size,boxes[i].size);
+           context.fill();
+           context.stroke();
         }
     }
 
     function runGame() {
         context.clearRect(0,0,canvas.width,canvas.height);
         step();
-        drawBox();
-        createBox();
+        draw();
         requestAnimationFrame(runGame);
     }
     runGame();
     createBoxes(gameSettings.numberOfBoxes);
-    console.log(boxes);
 	</script>
 </body>
 </html>
