@@ -44,6 +44,7 @@
 	    	size: randomNum(gameSettings.maxSize) + 10,
 	    	color: colors[randomNum(8)],
             duration: randomNum(gameSettings.maxDuration) + 10,
+            driftDirection: randomNum(2),
             speed: randomNum(gameSettings.maxSpeed) + 1
     	}
     }
@@ -54,7 +55,12 @@
             if(boxes[i].duration < 0) {
             boxes[i] = createBox();
             }
-               boxes[i].x += boxes[i].speed;
+            if (boxes[i].driftDirection == 0) {
+                boxes[i].x -= boxes[i].speed
+            }
+            if (boxes[i].driftDirection == 1) {
+                boxes[i].x += boxes[i].speed
+            }
         }
     }
 
