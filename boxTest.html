@@ -9,7 +9,7 @@
   </style>
 </head>
 <body>
-	<canvas id="canvas" width="1350" height="655"></canvas>
+	<center><canvas id="canvas" width="1350" height="655"></canvas></center>
 	<script type="text/javascript">
 
 	var canvas = document.getElementById("canvas");
@@ -28,7 +28,7 @@
 
     var gameSettings = {
         maxSize: 30,
-        numberOfBoxes: 100,
+        numberOfBoxes: 150,
         maxDuration: 300,
         maxSpeed: 5
     }
@@ -44,7 +44,7 @@
 	    	size: randomNum(gameSettings.maxSize) + 10,
 	    	color: colors[randomNum(8)],
             duration: randomNum(gameSettings.maxDuration) + 10,
-            driftDirection: randomNum(2),
+            driftDirection: randomNum(4),
             speed: randomNum(gameSettings.maxSpeed) + 1
     	}
     }
@@ -61,6 +61,21 @@
             if (boxes[i].driftDirection == 1) {
                 boxes[i].x += boxes[i].speed
             }
+            if (boxes[i].driftDirection == 2) {
+                boxes[i].y -= boxes[i].speed
+            }
+            if (boxes[i].driftDirection == 3) {
+                boxes[i].y += boxes[i].speed
+            }
+            /*if (boxes[i].y >= canvas.height) {
+                boxes[i].speed =- boxes[i].speed;
+            }
+            if (boxes[i].x >= canvas.width) {
+                boxes[i].speed =- boxes[i].speed;
+            }
+            if (boxes[i].y >= canvas.height) {
+                boxes[i].speed += boxes[i].speed;
+            }*/
         }
     }
 
