@@ -67,6 +67,26 @@
             if (circles[i].driftDirection == 3) {
                 circles[i].y += circles[i].speed
             }
+
+            //Make circles bounce off the right side
+            if (circles[i].x >= canvas.width) {
+                circles[i].speed =- circles[i].speed;
+            }
+
+            //Make circles bounce off the bottom
+            if (circles[i].y >= canvas.height) {
+                circles[i].speed =- circles[i].speed;
+            }
+
+            //Make circles bounce off the left side
+            if (circles[i].x <= 0){
+                circles[i].speed = -circles[i].speed;
+            }
+
+            //Make circles bounce off the top
+            if (circles[i].y <= 0){
+                circles[i].speed = -circles[i].speed;
+            }
         }
     }
 
