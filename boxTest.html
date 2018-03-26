@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Box Test</title>
+	<title>Bubbles</title>
 	<style type="text/css">
     canvas {
       background-color: black;
@@ -14,7 +14,7 @@
 
 	var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-    var boxes = [];
+    var circles = [];
     var colors = [
         "red",
         "blue",
@@ -28,7 +28,7 @@
 
     var gameSettings = {
         maxSize: 30,
-        numberOfBoxes: 150,
+        numberOfCircles: 150,
         maxDuration: 300,
         maxSpeed: 5
     }
@@ -37,7 +37,7 @@
         return Math.floor(Math.random() * n);
     }
 
-    function createBox() {
+    function createCircle() {
     	return {
     		x: randomNum(canvas.width - gameSettings.maxSize),
 	    	y: randomNum(canvas.height - gameSettings.maxSize),
@@ -50,52 +50,43 @@
     }
 
     function step() {
-        for(i=0; i<boxes.length; i++) {
-          boxes[i].duration --;
-            if(boxes[i].duration < 0) {
-            boxes[i] = createBox();
+        for(i=0; i<circles.length; i++) {
+          circles[i].duration --;
+            if(circles[i].duration < 0) {
+            circles[i] = createCircle();
             }
-            if (boxes[i].driftDirection == 0) {
-                boxes[i].x -= boxes[i].speed
+            if (circles[i].driftDirection == 0) {
+                circles[i].x -= circles[i].speed
             }
-            if (boxes[i].driftDirection == 1) {
-                boxes[i].x += boxes[i].speed
+            if (circles[i].driftDirection == 1) {
+                circles[i].x += circles[i].speed
             }
-            if (boxes[i].driftDirection == 2) {
-                boxes[i].y -= boxes[i].speed
+            if (circles[i].driftDirection == 2) {
+                circles[i].y -= circles[i].speed
             }
-            if (boxes[i].driftDirection == 3) {
-                boxes[i].y += boxes[i].speed
+            if (circles[i].driftDirection == 3) {
+                circles[i].y += circles[i].speed
             }
-            /*if (boxes[i].y >= canvas.height) {
-                boxes[i].speed =- boxes[i].speed;
-            }
-            if (boxes[i].x >= canvas.width) {
-                boxes[i].speed =- boxes[i].speed;
-            }
-            if (boxes[i].y >= canvas.height) {
-                boxes[i].speed += boxes[i].speed;
-            }*/
         }
     }
 
-    function createBoxes(n) {
+    function createCircles(n) {
         for(i=0; i<n; i++) {
-            boxes.push(createBox());
+            circles.push(createCircle());
         }
     }
 
     function draw() {
-        for(i=0; i<boxes.length; i++) {
+        for(i=0; i<circles.length; i++) {
             context.beginPath();
             context.arc(
-                boxes[i].x,
-                boxes[i].y,
-                boxes[i].size,
+                circles[i].x,
+                circles[i].y,
+                circles[i].size,
                 0,
                 2*Math.PI
                 );
-           context.fillStyle = boxes[i].color;
+           context.fillStyle = circles[i].color;
            context.fill();
            context.stroke();
         }
@@ -108,7 +99,7 @@
         requestAnimationFrame(runGame);
     }
     runGame();
-    createBoxes(gameSettings.numberOfBoxes);
+    createCircles(gameSettings.numberOfCircles);
 	</script>
 </body>
 </html>
